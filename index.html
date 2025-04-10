@@ -3,9 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather App - Easy Tutorials</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+   <div class="card">
+    <div class="search">
+        <input type="text" placeholder="Enter City Name" spellcheck="false">
+        <button><img src="images/magnifying-glass.png" alt=""></button>
+    </div>
+    <div class="weather">
+        <img src="images/rainy-day.png" class="weather-icon">
+        <h1 class="temp">22°c</h1>
+        <h2 class="city">New York</h2>
+        <div class="details">
+            <div class="col">
+                <img src="images/weather.png" >
+                <div>
+                    <p class="humidity">50%</p>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class="col">
+                <img src="images/windy.png" >
+                <div>
+                    <p class="wind">15 km/h</p>
+                    <p>Wind Speed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div> 
+
+
+<script>
+    const apiKey = "d32ec60d5c3d3a6e1c466447fc0f9d94";
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=bangalore";
+
+async function checkWeather(){
+    const response = await fetch(apiUrl + `&appid=${apiKey}`);
+    var data = await response.json();
+
+    console.log(data);
+
+    document.querySelector(".city").innerHTML = data.name;
+    document.querySelector(".temp").innerHTML = data.main.temp;
+    document.querySelector(".humidity").innerHTML = data.main.temp;
+
+
+}
+
+checkWeather()
+
+</script>
+
+
 </body>
 </html>
